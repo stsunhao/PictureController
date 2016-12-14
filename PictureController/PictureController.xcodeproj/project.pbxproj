@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B03DFD71E01452E007034B9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		3BE17AAC1E00DCCC00FFA4E5 /* PictureController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE17AB01E00DCCC00FFA4E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3BE17AB21E00DCCC00FFA4E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -95,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B03DFD61E01452E007034B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B03DFD71E01452E007034B9 /* AssetsLibrary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3BE17AA31E00DCCC00FFA4E5 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +111,7 @@
 				3BE17AC81E00DCCC00FFA4E5 /* PictureControllerTests */,
 				3BE17AD31E00DCCC00FFA4E5 /* PictureControllerUITests */,
 				3BE17AAD1E00DCCC00FFA4E5 /* Products */,
+				3B03DFD61E01452E007034B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,15 +132,14 @@
 				3BE17AB31E00DCCC00FFA4E5 /* AppDelegate.m */,
 				3BE17AB51E00DCCC00FFA4E5 /* ViewController.h */,
 				3BE17AB61E00DCCC00FFA4E5 /* ViewController.m */,
-				3BE17AE21E00DD2500FFA4E5 /* AlbumListViewController.h */,
-				3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */,
 				3BE17AE41E00DD2500FFA4E5 /* CustomCollectionview.h */,
 				3BE17AE51E00DD2500FFA4E5 /* CustomCollectionview.m */,
 				3BE17AE61E00DD2500FFA4E5 /* model.h */,
 				3BE17AE71E00DD2500FFA4E5 /* model.m */,
 				3BE17AE81E00DD2500FFA4E5 /* PhotoViewController.h */,
 				3BE17AE91E00DD2500FFA4E5 /* PhotoViewController.m */,
-				3BE17AEA1E00DD2500FFA4E5 /* PrefixHeader.pch */,
+				3BE17AE21E00DD2500FFA4E5 /* AlbumListViewController.h */,
+				3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */,
 				3BE17AB81E00DCCC00FFA4E5 /* Main.storyboard */,
 				3BE17ABB1E00DCCC00FFA4E5 /* Assets.xcassets */,
 				3BE17ABD1E00DCCC00FFA4E5 /* LaunchScreen.storyboard */,
@@ -145,6 +154,7 @@
 			children = (
 				3BE17AEF1E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png */,
 				3BE17AF01E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png */,
+				3BE17AEA1E00DD2500FFA4E5 /* PrefixHeader.pch */,
 				3BE17AB01E00DCCC00FFA4E5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -552,6 +562,7 @@
 				3BE17ADB1E00DCCC00FFA4E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3BE17ADC1E00DCCC00FFA4E5 /* Build configuration list for PBXNativeTarget "PictureControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +571,7 @@
 				3BE17ADE1E00DCCC00FFA4E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3BE17ADF1E00DCCC00FFA4E5 /* Build configuration list for PBXNativeTarget "PictureControllerUITests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +580,7 @@
 				3BE17AE11E00DCCC00FFA4E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

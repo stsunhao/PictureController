@@ -69,6 +69,32 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
     
+//    UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 20, 50, 20)];
+//    [leftBtn setBackgroundColor:[UIColor redColor]];
+//    [leftBtn setTitle:@"返回" forState:UIControlStateNormal];
+//    [leftBtn addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:leftBtn];
+//    
+//    UIButton *rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(70, 20, 50, 20)];
+//    [rightBtn setBackgroundColor:[UIColor redColor]];
+//    [rightBtn setTitle:@"取消" forState:UIControlStateNormal];
+//    [rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:rightBtn];
+    
+}
+
+-(void)leftBtnClick{
+    AlbumListViewController *albumVc = [[AlbumListViewController alloc]init];
+    CATransition *pushAnimation = [[CATransition alloc] init];
+    pushAnimation.duration = .3;
+    pushAnimation.type = kCATransitionMoveIn;
+    pushAnimation.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:pushAnimation forKey:nil];
+    [self.navigationController pushViewController:albumVc animated:YES];
+}
+
+-(void)rightBtnClick{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //获取相机胶卷中所有的图片
@@ -121,12 +147,27 @@
 
 - (void)back{
     AlbumListViewController *albumVc = [[AlbumListViewController alloc]init];
+    CATransition *pushAnimation = [[CATransition alloc] init];
+    pushAnimation.duration = .3;
+    pushAnimation.type = kCATransitionPush;
+    pushAnimation.subtype = kCATransitionFromLeft;
+    //将动画效果添加到视图层
+    [self.navigationController.view.layer addAnimation:pushAnimation forKey:nil];
     [self.navigationController pushViewController:albumVc animated:YES];
+    
 }
 
 - (void)cancel{
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    //创建动画对象
+//    CATransition *pushAnimation = [[CATransition alloc] init];
+//    pushAnimation.duration = .3;
+//    pushAnimation.type = kCATransitionPush;
+//    pushAnimation.subtype = kCATransitionFromBottom;
+//    //将动画效果添加到视图层
+//    [self.navigationController.view.layer addAnimation:pushAnimation forKey:nil];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+   
 }
 
 #pragma mark - collectionView datasource

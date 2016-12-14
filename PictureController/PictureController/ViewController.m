@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "PhotoViewController.h"
+#import "AlbumListViewController.h"
+
 @interface ViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @end
@@ -20,11 +22,6 @@
     [self UIType:pictureBtn backgroundColor:[UIColor redColor] frame:CGRectMake(0, 20+44, 100, 40) title:@"访问相册"];
     [self.view addSubview:pictureBtn];
     [pictureBtn addTarget:self action:@selector(pictureBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self UIType:cancelBtn backgroundColor:[UIColor blueColor] frame:CGRectMake(120, 20+44, 100, 40) title:@"取消相册"];
-    [self.view addSubview:cancelBtn];
-    [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -42,13 +39,10 @@
 //    imageController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 //    self.modalPresentationStyle=UIModalPresentationOverCurrentContext;
 //    [self presentViewController:imageController animated:YES completion:nil];
-    
-    PhotoViewController *pictureController = [[PhotoViewController alloc]init];
-    [self.navigationController pushViewController:pictureController animated:YES];
-}
 
-- (void)cancelBtnClick{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:[[PhotoViewController alloc]init]];
+    [self presentViewController:nvc animated:YES completion:nil];
+    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
