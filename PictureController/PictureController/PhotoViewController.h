@@ -14,6 +14,13 @@
 #import "model.h"
 #import "AlbumListViewController.h"
 
+@protocol photoViewSelectImgDelegate <NSObject>
+
+- (void)sendSelectImgArray:(NSMutableArray *)selectIMGArray;
+
+@end
+
 @interface PhotoViewController : UIViewController
 
+@property(nonatomic,assign)id<photoViewSelectImgDelegate> selectDelegate;
 @end

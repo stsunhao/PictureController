@@ -9,7 +9,7 @@
 #import "PhotoViewController.h"
 
 
-@interface PhotoViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface PhotoViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,albumSendNametype>
 {
     UICollectionView *_collectionView;
     UICollectionViewFlowLayout *_collectionViewLayout;
@@ -19,7 +19,12 @@
     
     ALAssetsFilter *_pictureType;//筛选相册中照片种类，是图片还是音频或视频
     ALAssetsLibrary *_assetsLibrary;//相册类实例化对象
+    
+    UIButton *confirmBtn;
+    UILabel *picNumLabel;
 }
+
+@property(nonatomic,strong)NSMutableArray *selectPicArray;
 @end
 
 @implementation PhotoViewController
@@ -30,6 +35,7 @@
     if (self) {
         _dataSourceMarray = [[NSMutableArray alloc]init];
         _groupMarray = [[NSMutableArray alloc]init];
+        
         //照片种类实例化对象:照片类
         _pictureType = [ALAssetsFilter allPhotos];
         _assetsLibrary = [[ALAssetsLibrary alloc]init];
@@ -41,25 +47,30 @@
     [super viewDidLoad];
     
     [self createUI];
-    [self loadPictureSource];
+    [self loadPictureSource:@""];
     
-//    dispatch_queue_t queue = dispatch_queue_create("com.test", NULL);
-//    dispatch_async(queue, ^{
-//        [self getOriginalImages];
-//        [self getThumbnailImages];
-//    });
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:NO];
+    
+    if ([_selectPicArray count]>0) {
+        [_selectPicArray removeAllObjects];
+    }
+    
 }
 
 - (void)createUI{
     
     self.view.backgroundColor  = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.title = @"相机胶卷";
     
     _collectionViewLayout = [[UICollectionViewFlowLayout alloc]init];
     _collectionViewLayout.itemSize = CGSizeMake(self.view.frame.size.width/4, screenWidth/4-1);
     _collectionViewLayout.sectionInset = UIEdgeInsetsMake(0.f, 0, 9.f, 0);
     
-    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20+44, screenWidth, screecHeight-20-44) collectionViewLayout:_collectionViewLayout];
+    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20+44, screenWidth, screecHeight-20-44-49) collectionViewLayout:_collectionViewLayout];
     [_collectionView setBackgroundColor:[UIColor whiteColor]];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
@@ -69,36 +80,29 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
     
-//    UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 20, 50, 20)];
-//    [leftBtn setBackgroundColor:[UIColor redColor]];
-//    [leftBtn setTitle:@"返回" forState:UIControlStateNormal];
-//    [leftBtn addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:leftBtn];
-//    
-//    UIButton *rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(70, 20, 50, 20)];
-//    [rightBtn setBackgroundColor:[UIColor redColor]];
-//    [rightBtn setTitle:@"取消" forState:UIControlStateNormal];
-//    [rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:rightBtn];
+    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, screecHeight-49, screenWidth, 49)];
+    [self.view addSubview:bottomView];
+    
+    UIView *divideLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 1)];
+    [divideLine setBackgroundColor:[UIColor grayColor]];
+    [bottomView addSubview:divideLine];
+    
+    picNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 14, 30, 20)];
+    [picNumLabel setTextColor:[UIColor greenColor]];
+    [bottomView addSubview:picNumLabel];
+    
+    confirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(bottomView.frame.size.width-70, 14, 60, 20)];
+    [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [confirmBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [confirmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    confirmBtn.enabled = NO;
+    [bottomView addSubview:confirmBtn];
     
 }
 
--(void)leftBtnClick{
-    AlbumListViewController *albumVc = [[AlbumListViewController alloc]init];
-    CATransition *pushAnimation = [[CATransition alloc] init];
-    pushAnimation.duration = .3;
-    pushAnimation.type = kCATransitionMoveIn;
-    pushAnimation.subtype = kCATransitionFromLeft;
-    [self.navigationController.view.layer addAnimation:pushAnimation forKey:nil];
-    [self.navigationController pushViewController:albumVc animated:YES];
-}
-
--(void)rightBtnClick{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 //获取相机胶卷中所有的图片
-- (void)loadPictureSource{
+- (void)loadPictureSource:(NSString *)albumName{
     if (_groupMarray.count > 0) {
         [_groupMarray removeAllObjects];
     }
@@ -108,10 +112,18 @@
         if (group) {
             //相册中只留下图片
             [group setAssetsFilter:_pictureType];
+            
+            if ([albumName isEqualToString:@""]) {
+                if ((group.numberOfAssets>0)&&([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"Camera Roll"]||[[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"相机胶卷"])) {
+                    [_groupMarray addObject:group];
+                }
+            }else{
+                if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:albumName]) {
+                    [_groupMarray addObject:group];
+                }
 
-            if ((group.numberOfAssets>0)&&([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"Camera Roll"]||[[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"相机胶卷"])) {
-                [_groupMarray addObject:group];
             }
+            
         }else{
             
             [self allPictureInAlbum:_groupMarray[0]];
@@ -147,8 +159,9 @@
 
 - (void)back{
     AlbumListViewController *albumVc = [[AlbumListViewController alloc]init];
+    albumVc.delegate = self;
     CATransition *pushAnimation = [[CATransition alloc] init];
-    pushAnimation.duration = .3;
+    pushAnimation.duration = .4;
     pushAnimation.type = kCATransitionPush;
     pushAnimation.subtype = kCATransitionFromLeft;
     //将动画效果添加到视图层
@@ -158,16 +171,14 @@
 }
 
 - (void)cancel{
-    //创建动画对象
-//    CATransition *pushAnimation = [[CATransition alloc] init];
-//    pushAnimation.duration = .3;
-//    pushAnimation.type = kCATransitionPush;
-//    pushAnimation.subtype = kCATransitionFromBottom;
-//    //将动画效果添加到视图层
-//    [self.navigationController.view.layer addAnimation:pushAnimation forKey:nil];
-//    [self.navigationController popViewControllerAnimated:YES];
+
     [self dismissViewControllerAnimated:YES completion:nil];
    
+}
+
+- (void)confirmBtnClick{
+    [self.selectDelegate sendSelectImgArray:_selectPicArray];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - collectionView datasource
@@ -192,6 +203,14 @@
     cell.pictureImg.image = [UIImage imageWithCGImage:subModel.asset.thumbnail];
     
     return cell;
+}
+
+#pragma mark - 懒加载
+- (NSMutableArray *)selectPicArray{
+    if (!_selectPicArray) {
+        _selectPicArray = [[NSMutableArray alloc]init];
+    }
+    return _selectPicArray;
 }
 
 #pragma mark - collectionView deleaget
@@ -221,12 +240,27 @@
     model *subModel = [_dataSourceMarray objectAtIndex:indexPath.row];
     if ([subModel.flag isEqualToString:@"1"]) {
         subModel.flag = @"0";
+        [self.selectPicArray removeObject:subModel.asset];
     }else{
         subModel.flag = @"1";
+        [self.selectPicArray addObject:subModel.asset];
     }
-    
+    if ([_selectPicArray count]>0){
+        confirmBtn.enabled = YES;
+        [picNumLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)[_selectPicArray count]]];
+    }
+    else{
+        confirmBtn.enabled = NO;
+        [picNumLabel setText:@""];
+    }
     [_collectionView reloadItemsAtIndexPaths:@[indexPath]];
     
+}
+
+#pragma mark - albumSendNametype delegate
+- (void)sendAlbumType:(NSString *)albumName{
+    [self loadPictureSource:albumName];
+    self.title = albumName;
 }
 
 

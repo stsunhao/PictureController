@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+
+@protocol albumSendNametype <NSObject>
+
+- (void)sendAlbumType:(NSString *)albumName;
+
+@end
 
 @interface AlbumListViewController : UIViewController
+@property(nonatomic,assign)id<albumSendNametype> delegate;
 
 @end

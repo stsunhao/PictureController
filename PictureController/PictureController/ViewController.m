@@ -7,10 +7,11 @@
 //
 
 #import "ViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "PhotoViewController.h"
 #import "AlbumListViewController.h"
 
-@interface ViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface ViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,photoViewSelectImgDelegate>
 
 @end
 
@@ -36,13 +37,25 @@
 //    UIImagePickerController *imageController = [[UIImagePickerController alloc]init];
 //    imageController.allowsEditing = YES;
 //    imageController.delegate = self;
+//    UIImagePickerControllerSourceTypePhotoLibrary,
+//    UIImagePickerControllerSourceTypeCamera,
+//    UIImagePickerControllerSourceTypeSavedPhotosAlbum
 //    imageController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 //    self.modalPresentationStyle=UIModalPresentationOverCurrentContext;
 //    [self presentViewController:imageController animated:YES completion:nil];
-
-    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:[[PhotoViewController alloc]init]];
+    PhotoViewController *pvc = [[PhotoViewController alloc]init];
+    pvc.selectDelegate = self;
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:pvc];
     [self presentViewController:nvc animated:YES completion:nil];
     
+}
+
+#pragma mark - photoViewSelectImgDelegate
+- (void)sendSelectImgArray:(NSMutableArray *)selectIMGArray{
+    for (int i = 0; i < [selectIMGArray count]; i ++) {
+        ALAsset *assets = [selectIMGArray objectAtIndex:i];
+        NSLog(@"%@",assets.defaultRepresentation.filename);
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
