@@ -40,7 +40,7 @@
 //    UIImagePickerControllerSourceTypePhotoLibrary,
 //    UIImagePickerControllerSourceTypeCamera,
 //    UIImagePickerControllerSourceTypeSavedPhotosAlbum
-//    imageController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    imageController.sourceType = UIImagePickerControllerSourceTypeCamera;
 //    self.modalPresentationStyle=UIModalPresentationOverCurrentContext;
 //    [self presentViewController:imageController animated:YES completion:nil];
     PhotoViewController *pvc = [[PhotoViewController alloc]init];

@@ -118,6 +118,7 @@
                     [_groupMarray addObject:group];
                 }
             }else{
+                self.title = albumName;
                 if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:albumName]) {
                     [_groupMarray addObject:group];
                 }
@@ -125,8 +126,9 @@
             }
             
         }else{
-            
-            [self allPictureInAlbum:_groupMarray[0]];
+            if ([_groupMarray count] > 0) {
+                [self allPictureInAlbum:_groupMarray[0]];
+            }
         }
 
         
