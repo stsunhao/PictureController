@@ -17,7 +17,7 @@
 		3BE17AD51E00DCCC00FFA4E5 /* PictureControllerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AD41E00DCCC00FFA4E5 /* PictureControllerUITests.m */; };
 		3BE17AEB1E00DD2600FFA4E5 /* AlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */; };
 		3BE17AEC1E00DD2600FFA4E5 /* CustomCollectionview.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE51E00DD2500FFA4E5 /* CustomCollectionview.m */; };
-		3BE17AED1E00DD2600FFA4E5 /* model.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE71E00DD2500FFA4E5 /* model.m */; };
+		3BE17AED1E00DD2600FFA4E5 /* AssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE71E00DD2500FFA4E5 /* AssetModel.m */; };
 		3BE17AEE1E00DD2600FFA4E5 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE91E00DD2500FFA4E5 /* PhotoViewController.m */; };
 		3BE17AF11E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE17AEF1E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png */; };
 		3BE17AF21E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE17AF01E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png */; };
@@ -62,8 +62,8 @@
 		3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListViewController.m; sourceTree = "<group>"; };
 		3BE17AE41E00DD2500FFA4E5 /* CustomCollectionview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionview.h; sourceTree = "<group>"; };
 		3BE17AE51E00DD2500FFA4E5 /* CustomCollectionview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionview.m; sourceTree = "<group>"; };
-		3BE17AE61E00DD2500FFA4E5 /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
-		3BE17AE71E00DD2500FFA4E5 /* model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = model.m; sourceTree = "<group>"; };
+		3BE17AE61E00DD2500FFA4E5 /* AssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetModel.h; sourceTree = "<group>"; };
+		3BE17AE71E00DD2500FFA4E5 /* AssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetModel.m; sourceTree = "<group>"; };
 		3BE17AE81E00DD2500FFA4E5 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		3BE17AE91E00DD2500FFA4E5 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		3BE17AEA1E00DD2500FFA4E5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 				3BE17AE91E00DD2500FFA4E5 /* PhotoViewController.m */,
 				3BE17AE41E00DD2500FFA4E5 /* CustomCollectionview.h */,
 				3BE17AE51E00DD2500FFA4E5 /* CustomCollectionview.m */,
-				3BE17AE61E00DD2500FFA4E5 /* model.h */,
-				3BE17AE71E00DD2500FFA4E5 /* model.m */,
+				3BE17AE61E00DD2500FFA4E5 /* AssetModel.h */,
+				3BE17AE71E00DD2500FFA4E5 /* AssetModel.m */,
 				3BE17AE21E00DD2500FFA4E5 /* AlbumListViewController.h */,
 				3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */,
 				3BE17AB81E00DCCC00FFA4E5 /* Main.storyboard */,
@@ -319,7 +319,7 @@
 				3BE17AEB1E00DD2600FFA4E5 /* AlbumListViewController.m in Sources */,
 				3BE17AB71E00DCCC00FFA4E5 /* ViewController.m in Sources */,
 				3BE17AB41E00DCCC00FFA4E5 /* AppDelegate.m in Sources */,
-				3BE17AED1E00DD2600FFA4E5 /* model.m in Sources */,
+				3BE17AED1E00DD2600FFA4E5 /* AssetModel.m in Sources */,
 				3BE17AB11E00DCCC00FFA4E5 /* main.m in Sources */,
 				3BE17AEC1E00DD2600FFA4E5 /* CustomCollectionview.m in Sources */,
 				3BE17AEE1E00DD2600FFA4E5 /* PhotoViewController.m in Sources */,

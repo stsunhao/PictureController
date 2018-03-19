@@ -8,8 +8,8 @@
 //  Copyright © 2016年 sitech. All rights reserved.
 //
 
-#import "model.h"
+#import "AssetModel.h"
 
-@implementation model
+@implementation AssetModel
 
 @end

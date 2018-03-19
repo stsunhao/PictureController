@@ -51,7 +51,7 @@
 }
 
 #pragma mark - photoViewSelectImgDelegate
-- (void)sendSelectImgArray:(NSMutableArray *)selectIMGArray{
+- (void)sendSelectImgArray:(NSMutableArray *)selectIMGArray tag:(int)tag{
     for (int i = 0; i < [selectIMGArray count]; i ++) {
         ALAsset *assets = [selectIMGArray objectAtIndex:i];
         NSLog(@"%@",assets.defaultRepresentation.filename);

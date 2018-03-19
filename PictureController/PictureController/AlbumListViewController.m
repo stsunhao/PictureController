@@ -8,6 +8,10 @@
 
 #import "AlbumListViewController.h"
 
+#define Version(number) if ([[[UIDevice currentDevice] systemVersion] floatValue] >= number)
+#define screenWidth self.view.frame.size.width
+#define screecHeight self.view.frame.size.height
+
 @interface AlbumListViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_albumTableView;
@@ -35,13 +39,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"照片";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 50, 40)];
+    [rightButton setTitle:@"取消" forState:UIControlStateNormal];
+    [rightButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     
     [self createTableView];
     
@@ -53,7 +63,11 @@
 }
 
 - (void)createTableView{
-    _albumTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 20+44+2, screenWidth, screecHeight) style:UITableViewStylePlain];
+    Version(8.0)
+        _albumTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 20 + 44, screenWidth, screecHeight-64) style:UITableViewStylePlain];
+    else{
+        _albumTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, screenWidth, screecHeight-64) style:UITableViewStylePlain];
+    }
     _albumTableView.delegate = self;
     _albumTableView.dataSource = self;
     [self.view addSubview:_albumTableView];

@@ -19,7 +19,7 @@
         [self addSubview:self.pictureImg];
         
         
-        self.pressImg = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-20, 0, 20, 20)];
+        self.pressImg = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-30, 0, 30, 30)];
         [self addSubview:self.pressImg];
         
     }

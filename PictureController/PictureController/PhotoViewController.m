@@ -8,6 +8,11 @@
 
 #import "PhotoViewController.h"
 
+#define screenWidth self.view.frame.size.width
+#define screecHeight self.view.frame.size.height
+#define Version(number) if ([[[UIDevice currentDevice] systemVersion] floatValue] >= number)
+#define Xscale ([(NSString*)[SessionStorage getItemWithKey:@"sitech_width"] floatValue]/320.f)
+#define Yscale ([(NSString*)[SessionStorage getItemWithKey:@"sitech_height"] floatValue]/480.f)
 
 @interface PhotoViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,albumSendNametype>
 {
@@ -20,8 +25,8 @@
     ALAssetsFilter *_pictureType;//筛选相册中照片种类，是图片还是音频或视频
     ALAssetsLibrary *_assetsLibrary;//相册类实例化对象
     
-    UIButton *confirmBtn;
-    UILabel *picNumLabel;
+    UIButton *_confirmBtn;//确认按钮
+    UILabel *_picNumLabel;//图片个数文本
 }
 
 @property(nonatomic,strong)NSMutableArray *selectPicArray;
@@ -45,7 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self createUI];
     [self loadPictureSource:@""];
     
@@ -61,43 +66,68 @@
 }
 
 - (void)createUI{
-    
     self.view.backgroundColor  = [UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:(38/255.0) green:(36/255.0) blue:(30/255.0) alpha:1.0];
+    self.navigationController.navigationBar.alpha = 0.7;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"相机胶卷";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     _collectionViewLayout = [[UICollectionViewFlowLayout alloc]init];
     _collectionViewLayout.itemSize = CGSizeMake(self.view.frame.size.width/4, screenWidth/4-1);
     _collectionViewLayout.sectionInset = UIEdgeInsetsMake(0.f, 0, 9.f, 0);
     
+    Version(8.0)
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20+44, screenWidth, screecHeight-20-44-49) collectionViewLayout:_collectionViewLayout];
+    else{
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 44, screenWidth, screecHeight-20-44-49) collectionViewLayout:_collectionViewLayout];
+    }
     [_collectionView setBackgroundColor:[UIColor whiteColor]];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerClass:[CustomCollectionview class] forCellWithReuseIdentifier:@"cell"];
     [self.view addSubview:_collectionView];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 50, 40)];
+    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [leftButton setImage:nil forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 50, 40)];
+    [rightButton setTitle:@"取消" forState:UIControlStateNormal];
+    [rightButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, screecHeight-49, screenWidth, 49)];
+    [bottomView setBackgroundColor:[UIColor colorWithRed:(30/255.0) green:(34/255.0) blue:(39/255.0) alpha:1.0]];
+    [bottomView setBackgroundColor:[UIColor blackColor]];
     [self.view addSubview:bottomView];
     
     UIView *divideLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 1)];
     [divideLine setBackgroundColor:[UIColor grayColor]];
     [bottomView addSubview:divideLine];
     
-    picNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 14, 30, 20)];
-    [picNumLabel setTextColor:[UIColor greenColor]];
-    [bottomView addSubview:picNumLabel];
+    _picNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 14, 30, 20)];
+    [_picNumLabel setTextColor:[UIColor whiteColor]];
+    [bottomView addSubview:_picNumLabel];
     
-    confirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(bottomView.frame.size.width-70, 14, 60, 20)];
-    [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [confirmBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [confirmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-    [confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    confirmBtn.enabled = NO;
-    [bottomView addSubview:confirmBtn];
+    _confirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(bottomView.frame.size.width-70, 10, 60, 29)];
+     [_confirmBtn setBackgroundColor:[UIColor colorWithRed:(30/255.0) green:(161/255.0) blue:(20/255.0) alpha:1.0]];
+    _confirmBtn.layer.cornerRadius = 5;
+    _confirmBtn.layer.masksToBounds = YES;
+    [_confirmBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [_confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+     [_confirmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [_confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    _confirmBtn.enabled = NO;
+    [bottomView addSubview:_confirmBtn];
     
 }
 
@@ -114,7 +144,7 @@
             [group setAssetsFilter:_pictureType];
             
             if ([albumName isEqualToString:@""]) {
-                if ((group.numberOfAssets>0)&&([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"Camera Roll"]||[[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"相机胶卷"])) {
+                if ((group.numberOfAssets>0)&&([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"Camera Roll"]||[[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"相机胶卷"]||[[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"所有照片"])) {
                     [_groupMarray addObject:group];
                 }
             }else{
@@ -148,7 +178,7 @@
     [albumGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         
         if (result) {
-            model *picModel = [[model alloc]init];
+            AssetModel *picModel = [[AssetModel alloc]init];
             picModel.asset = result;
             picModel.flag = @"0";
             [_dataSourceMarray addObject:picModel];
@@ -179,7 +209,7 @@
 }
 
 - (void)confirmBtnClick{
-    [self.selectDelegate sendSelectImgArray:_selectPicArray];
+    [self.selectDelegate sendSelectImgArray:_selectPicArray tag:_tag];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -196,7 +226,7 @@
     
     static NSString *cellID = @"cell";
     CustomCollectionview *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    model *subModel = [_dataSourceMarray objectAtIndex:indexPath.row];
+    AssetModel *subModel = [_dataSourceMarray objectAtIndex:indexPath.row];
     if ([subModel.flag isEqualToString:@"0"]) {
         cell.pressImg.image = [UIImage imageNamed:@"photo_def_photoPickerVc@2x.png"];
     }else{
@@ -207,13 +237,7 @@
     return cell;
 }
 
-#pragma mark - 懒加载
-- (NSMutableArray *)selectPicArray{
-    if (!_selectPicArray) {
-        _selectPicArray = [[NSMutableArray alloc]init];
-    }
-    return _selectPicArray;
-}
+
 
 #pragma mark - collectionView deleaget
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -239,7 +263,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    model *subModel = [_dataSourceMarray objectAtIndex:indexPath.row];
+    AssetModel *subModel = [_dataSourceMarray objectAtIndex:indexPath.row];
     if ([subModel.flag isEqualToString:@"1"]) {
         subModel.flag = @"0";
         [self.selectPicArray removeObject:subModel.asset];
@@ -248,12 +272,12 @@
         [self.selectPicArray addObject:subModel.asset];
     }
     if ([_selectPicArray count]>0){
-        confirmBtn.enabled = YES;
-        [picNumLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)[_selectPicArray count]]];
+        _confirmBtn.enabled = YES;
+        [_picNumLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)[_selectPicArray count]]];
     }
     else{
-        confirmBtn.enabled = NO;
-        [picNumLabel setText:@""];
+        _confirmBtn.enabled = NO;
+        [_picNumLabel setText:@""];
     }
     [_collectionView reloadItemsAtIndexPaths:@[indexPath]];
     
@@ -331,7 +355,13 @@
 
 
 
-
+#pragma mark - 懒加载
+- (NSMutableArray *)selectPicArray{
+    if (!_selectPicArray) {
+        _selectPicArray = [[NSMutableArray alloc]init];
+    }
+    return _selectPicArray;
+}
 
 
 @end
