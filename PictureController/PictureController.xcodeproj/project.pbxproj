@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BE07E0F207E477D00EECD82 /* AlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE07E06207E477D00EECD82 /* AlbumListViewController.m */; };
+		3BE07E10207E477D00EECD82 /* photo_def_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE07E07207E477D00EECD82 /* photo_def_photoPickerVc@2x.png */; };
+		3BE07E11207E477D00EECD82 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE07E08207E477D00EECD82 /* PhotoViewController.m */; };
+		3BE07E12207E477D00EECD82 /* AssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE07E0B207E477D00EECD82 /* AssetModel.m */; };
+		3BE07E13207E477D00EECD82 /* photo_sel_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE07E0C207E477D00EECD82 /* photo_sel_photoPickerVc@2x.png */; };
+		3BE07E14207E477D00EECD82 /* CustomCollectionview.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE07E0E207E477D00EECD82 /* CustomCollectionview.m */; };
 		3BE17AB11E00DCCC00FFA4E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AB01E00DCCC00FFA4E5 /* main.m */; };
 		3BE17AB41E00DCCC00FFA4E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AB31E00DCCC00FFA4E5 /* AppDelegate.m */; };
 		3BE17AB71E00DCCC00FFA4E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AB61E00DCCC00FFA4E5 /* ViewController.m */; };
@@ -15,12 +21,6 @@
 		3BE17ABF1E00DCCC00FFA4E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BE17ABD1E00DCCC00FFA4E5 /* LaunchScreen.storyboard */; };
 		3BE17ACA1E00DCCC00FFA4E5 /* PictureControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AC91E00DCCC00FFA4E5 /* PictureControllerTests.m */; };
 		3BE17AD51E00DCCC00FFA4E5 /* PictureControllerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AD41E00DCCC00FFA4E5 /* PictureControllerUITests.m */; };
-		3BE17AEB1E00DD2600FFA4E5 /* AlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */; };
-		3BE17AEC1E00DD2600FFA4E5 /* CustomCollectionview.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE51E00DD2500FFA4E5 /* CustomCollectionview.m */; };
-		3BE17AED1E00DD2600FFA4E5 /* AssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE71E00DD2500FFA4E5 /* AssetModel.m */; };
-		3BE17AEE1E00DD2600FFA4E5 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE17AE91E00DD2500FFA4E5 /* PhotoViewController.m */; };
-		3BE17AF11E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE17AEF1E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png */; };
-		3BE17AF21E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE17AF01E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +42,16 @@
 
 /* Begin PBXFileReference section */
 		3B03DFD71E01452E007034B9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		3BE07E05207E477D00EECD82 /* AlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListViewController.h; sourceTree = "<group>"; };
+		3BE07E06207E477D00EECD82 /* AlbumListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListViewController.m; sourceTree = "<group>"; };
+		3BE07E07207E477D00EECD82 /* photo_def_photoPickerVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_def_photoPickerVc@2x.png"; sourceTree = "<group>"; };
+		3BE07E08207E477D00EECD82 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		3BE07E09207E477D00EECD82 /* AssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetModel.h; sourceTree = "<group>"; };
+		3BE07E0A207E477D00EECD82 /* CustomCollectionview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionview.h; sourceTree = "<group>"; };
+		3BE07E0B207E477D00EECD82 /* AssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetModel.m; sourceTree = "<group>"; };
+		3BE07E0C207E477D00EECD82 /* photo_sel_photoPickerVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_sel_photoPickerVc@2x.png"; sourceTree = "<group>"; };
+		3BE07E0D207E477D00EECD82 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		3BE07E0E207E477D00EECD82 /* CustomCollectionview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionview.m; sourceTree = "<group>"; };
 		3BE17AAC1E00DCCC00FFA4E5 /* PictureController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE17AB01E00DCCC00FFA4E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3BE17AB21E00DCCC00FFA4E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,17 +68,7 @@
 		3BE17AD01E00DCCC00FFA4E5 /* PictureControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictureControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE17AD41E00DCCC00FFA4E5 /* PictureControllerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureControllerUITests.m; sourceTree = "<group>"; };
 		3BE17AD61E00DCCC00FFA4E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BE17AE21E00DD2500FFA4E5 /* AlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListViewController.h; sourceTree = "<group>"; };
-		3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListViewController.m; sourceTree = "<group>"; };
-		3BE17AE41E00DD2500FFA4E5 /* CustomCollectionview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionview.h; sourceTree = "<group>"; };
-		3BE17AE51E00DD2500FFA4E5 /* CustomCollectionview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionview.m; sourceTree = "<group>"; };
-		3BE17AE61E00DD2500FFA4E5 /* AssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetModel.h; sourceTree = "<group>"; };
-		3BE17AE71E00DD2500FFA4E5 /* AssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetModel.m; sourceTree = "<group>"; };
-		3BE17AE81E00DD2500FFA4E5 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
-		3BE17AE91E00DD2500FFA4E5 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		3BE17AEA1E00DD2500FFA4E5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		3BE17AEF1E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_def_photoPickerVc@2x.png"; sourceTree = "<group>"; };
-		3BE17AF01E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_sel_photoPickerVc@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +104,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3BE07E04207E46EA00EECD82 /* SHPhotoAlbum */ = {
+			isa = PBXGroup;
+			children = (
+				3BE07E0D207E477D00EECD82 /* PhotoViewController.h */,
+				3BE07E08207E477D00EECD82 /* PhotoViewController.m */,
+				3BE07E05207E477D00EECD82 /* AlbumListViewController.h */,
+				3BE07E06207E477D00EECD82 /* AlbumListViewController.m */,
+				3BE07E09207E477D00EECD82 /* AssetModel.h */,
+				3BE07E0B207E477D00EECD82 /* AssetModel.m */,
+				3BE07E0A207E477D00EECD82 /* CustomCollectionview.h */,
+				3BE07E0E207E477D00EECD82 /* CustomCollectionview.m */,
+				3BE07E07207E477D00EECD82 /* photo_def_photoPickerVc@2x.png */,
+				3BE07E0C207E477D00EECD82 /* photo_sel_photoPickerVc@2x.png */,
+			);
+			path = SHPhotoAlbum;
+			sourceTree = "<group>";
+		};
 		3BE17AA31E00DCCC00FFA4E5 = {
 			isa = PBXGroup;
 			children = (
@@ -128,18 +145,11 @@
 		3BE17AAE1E00DCCC00FFA4E5 /* PictureController */ = {
 			isa = PBXGroup;
 			children = (
+				3BE07E04207E46EA00EECD82 /* SHPhotoAlbum */,
 				3BE17AB21E00DCCC00FFA4E5 /* AppDelegate.h */,
 				3BE17AB31E00DCCC00FFA4E5 /* AppDelegate.m */,
 				3BE17AB51E00DCCC00FFA4E5 /* ViewController.h */,
 				3BE17AB61E00DCCC00FFA4E5 /* ViewController.m */,
-				3BE17AE81E00DD2500FFA4E5 /* PhotoViewController.h */,
-				3BE17AE91E00DD2500FFA4E5 /* PhotoViewController.m */,
-				3BE17AE41E00DD2500FFA4E5 /* CustomCollectionview.h */,
-				3BE17AE51E00DD2500FFA4E5 /* CustomCollectionview.m */,
-				3BE17AE61E00DD2500FFA4E5 /* AssetModel.h */,
-				3BE17AE71E00DD2500FFA4E5 /* AssetModel.m */,
-				3BE17AE21E00DD2500FFA4E5 /* AlbumListViewController.h */,
-				3BE17AE31E00DD2500FFA4E5 /* AlbumListViewController.m */,
 				3BE17AB81E00DCCC00FFA4E5 /* Main.storyboard */,
 				3BE17ABB1E00DCCC00FFA4E5 /* Assets.xcassets */,
 				3BE17ABD1E00DCCC00FFA4E5 /* LaunchScreen.storyboard */,
@@ -152,8 +162,6 @@
 		3BE17AAF1E00DCCC00FFA4E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3BE17AEF1E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png */,
-				3BE17AF01E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png */,
 				3BE17AEA1E00DD2500FFA4E5 /* PrefixHeader.pch */,
 				3BE17AB01E00DCCC00FFA4E5 /* main.m */,
 			);
@@ -287,11 +295,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BE17AF21E00DD4300FFA4E5 /* photo_sel_photoPickerVc@2x.png in Resources */,
 				3BE17ABF1E00DCCC00FFA4E5 /* LaunchScreen.storyboard in Resources */,
 				3BE17ABC1E00DCCC00FFA4E5 /* Assets.xcassets in Resources */,
+				3BE07E10207E477D00EECD82 /* photo_def_photoPickerVc@2x.png in Resources */,
 				3BE17ABA1E00DCCC00FFA4E5 /* Main.storyboard in Resources */,
-				3BE17AF11E00DD4300FFA4E5 /* photo_def_photoPickerVc@2x.png in Resources */,
+				3BE07E13207E477D00EECD82 /* photo_sel_photoPickerVc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,13 +324,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BE17AEB1E00DD2600FFA4E5 /* AlbumListViewController.m in Sources */,
+				3BE07E0F207E477D00EECD82 /* AlbumListViewController.m in Sources */,
 				3BE17AB71E00DCCC00FFA4E5 /* ViewController.m in Sources */,
 				3BE17AB41E00DCCC00FFA4E5 /* AppDelegate.m in Sources */,
-				3BE17AED1E00DD2600FFA4E5 /* AssetModel.m in Sources */,
 				3BE17AB11E00DCCC00FFA4E5 /* main.m in Sources */,
-				3BE17AEC1E00DD2600FFA4E5 /* CustomCollectionview.m in Sources */,
-				3BE17AEE1E00DD2600FFA4E5 /* PhotoViewController.m in Sources */,
+				3BE07E14207E477D00EECD82 /* CustomCollectionview.m in Sources */,
+				3BE07E12207E477D00EECD82 /* AssetModel.m in Sources */,
+				3BE07E11207E477D00EECD82 /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
